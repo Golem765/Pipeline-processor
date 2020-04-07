@@ -1,6 +1,5 @@
 package pipeline.executor;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pipeline.descriptor.PipelineDescriptor;
@@ -15,7 +14,6 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PipelineExecutorTest {
-    private static final ObjectMapper objectMapper = new ObjectMapper();
     private static final String FIRST_NAME = "George";
     private static final String FIRST_NAME_FIELD_KEY = "firstName";
     private static final String NUM_OF_FIELDS_TARGET_KEY = "numOfFields";
@@ -48,7 +46,7 @@ class PipelineExecutorTest {
     }
 
     @Test
-    void testTransform() throws Exception {
+    void testTransform() {
         int baseNumOfFields = 3;
         Map<String, Object> baseJson = createBaseJson(baseNumOfFields);
 
@@ -64,7 +62,7 @@ class PipelineExecutorTest {
         }
     }
 
-    private Map<String, Object> createBaseJson(int numOfFields) throws Exception {
+    private Map<String, Object> createBaseJson(int numOfFields) {
         Map<String, Object> json = new HashMap<>();
         for (int i = 0; i < numOfFields; i++) {
             json.put(UUID.randomUUID().toString(), UUID.randomUUID().toString());
