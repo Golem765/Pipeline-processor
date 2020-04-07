@@ -1,18 +1,19 @@
 package pipeline.descriptor;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Value;
 
 import java.util.Map;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
+@Value
 public class PipelineStep {
-    @JsonProperty("processor")
-    private String processorName;
-    @JsonProperty("configuration")
-    private Map<String, String> processorConfiguration;
+    private final String processorName;
+
+    private final Map<String, String> processorConfiguration;
+
+    public PipelineStep(@JsonProperty("processor") String processorName,
+                        @JsonProperty("configuration") Map<String, String> processorConfiguration) {
+        this.processorName = processorName;
+        this.processorConfiguration = processorConfiguration;
+    }
 }

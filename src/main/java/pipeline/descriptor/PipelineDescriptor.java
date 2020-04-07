@@ -1,14 +1,15 @@
 package pipeline.descriptor;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Value;
 
 import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
+@Value
 public class PipelineDescriptor {
-    private List<PipelineStep> steps;
+    private final List<PipelineStep> steps;
+
+    public PipelineDescriptor(@JsonProperty("steps") List<PipelineStep> steps) {
+        this.steps = steps;
+    }
 }
